@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,5 +20,7 @@ namespace TicketDetalle.Shared
         [Required(ErrorMessage = "Favor completar este campo")]
         public string? Descripcion { get; set; }
 
+        [ForeignKey("TicketId")]
+        public ICollection<TicketsDetalle> TicketsDetalles { get; set; } = new List<TicketsDetalle>();
     }
 }
