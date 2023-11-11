@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDetalle.Server", "TicketDetalle\Server\TicketDetalle.Server.csproj", "{738EBDF6-9EBB-453F-B3BB-FD171862C840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketDetalle.Server", "TicketDetalle\Server\TicketDetalle.Server.csproj", "{738EBDF6-9EBB-453F-B3BB-FD171862C840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDetalle.Client", "TicketDetalle\Client\TicketDetalle.Client.csproj", "{34E816AC-F066-4D72-BF90-51F3DD61E9C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketDetalle.Client", "TicketDetalle\Client\TicketDetalle.Client.csproj", "{34E816AC-F066-4D72-BF90-51F3DD61E9C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketDetalle.Shared", "TicketDetalle\Shared\TicketDetalle.Shared.csproj", "{98FDC3C4-BDE4-4103-A9AA-8E37B41714C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketDetalle.Shared", "TicketDetalle\Shared\TicketDetalle.Shared.csproj", "{98FDC3C4-BDE4-4103-A9AA-8E37B41714C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
