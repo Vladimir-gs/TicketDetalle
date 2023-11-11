@@ -21,6 +21,6 @@ namespace TicketDetalle.Shared
         public string? Descripcion { get; set; }
 
         [ForeignKey("TicketId")]
-        public ICollection<TicketsDetalle> TicketsDetalles { get; set; } = new List<TicketsDetalle>();
+        public ICollection<TicketsDetalle> TicketsDetalle { get; set; } = new List<TicketsDetalle>();
     }
 }

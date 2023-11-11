@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicketDetalle.Shared
 {
-    internal class TicketsDetalle
+    public class TicketsDetalle
     {
         [Key] 
         public int Id { get; set; }
