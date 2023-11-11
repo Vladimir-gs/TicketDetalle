@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Shared\TicketDetalle.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pages\Consultas\" />
-  </ItemGroup>
-
 </Project>
