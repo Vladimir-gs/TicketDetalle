@@ -3,6 +3,7 @@
 @using System.Text.RegularExpressions;
 @using TicketDetalle.Shared;
 @inject HttpClient httpClient;
+@inject NotificationService notificationService
 
 <EditForm Model="Ticket" OnValidSubmit="Guardar">
     <DataAnnotationsValidator />
@@ -151,6 +152,13 @@
         }
         else
         {
+            var mensaje = new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "No se ha encontrado",
+                Detail = "No se ha encontrado el Ticket que estaba buscando",
+                Duration = 4000
+            };
             this.Nuevo();
         }
     }
@@ -160,12 +168,27 @@
         using var response = await httpClient.PostAsJsonAsync("api/Tickets", Ticket);
         if (!response.IsSuccessStatusCode)
         {
-
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "No se ha guardado el ticket",
+                    Detail = response.ReasonPhrase ?? "error",
+                    Duration = 4000
+                };
+            notificationService.Notify(mensaje);
             return;
         }
         var ticketDevuelto = await response.Content.ReadFromJsonAsync<Tickets>();
         if (ticketDevuelto is not null)
         {
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Success,
+                    Summary = "Se ha guardado el ticket",
+                    Detail = "Se ha creado su ticket",
+                    Duration = 4000
+                };
+            notificationService.Notify(mensaje);
             Ticket = ticketDevuelto;
             StateHasChanged();
         }
@@ -182,6 +205,14 @@
         using var response = await httpClient.DeleteAsync($"api/Tickets/{Ticket.TicketId}");
         if (!response.IsSuccessStatusCode)
         {
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "No se ha Eliminado",
+                    Detail = response.ReasonPhrase ?? "error",
+                    Duration = 4000
+                };
+            notificationService.Notify(mensaje);
             return;
         }
         else
@@ -223,6 +254,14 @@
 
         if (String.IsNullOrWhiteSpace(Mensaje))
         {
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error en Detalle",
+                    Detail = "El Mensaje no puede estar vacío",
+                    Duration = 3000
+                };
+            notificationService.Notify(mensaje);
             EsValido = false;
         }
         return EsValido;
@@ -232,12 +271,26 @@
     {
         if (String.IsNullOrWhiteSpace(Emisor))
         {
-
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error en Detalle",
+                    Detail = "El Emisor no puede estar vacío",
+                    Duration = 3000
+                };
+            notificationService.Notify(mensaje);
             return false;
         }
 
         if (!Regex.IsMatch(Emisor, @"^[A-Za-z\s]+$"))
         {
+            var mensaje = new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Error,
+                    Summary = "Error en Detalle",
+                    Detail = "El Emisor solo puede contener letras y espacios",
+                    Duration = 3000
+                };
             return false;
         }
         return true;
